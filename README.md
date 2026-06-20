@@ -1,60 +1,61 @@
-# Python-Llanta | Detector didáctico con OpenCV
+# Python-Llanta | Detección didáctica con OpenCV
 
-Proyecto académico de visión por computadora creado como práctica de detección de objetos con **Python** y **OpenCV**.
+Proyecto académico de visión por computadora desarrollado en Python.
+El programa utiliza OpenCV para capturar video desde una cámara web, procesar cada imagen en escala de grises y aplicar clasificadores Haar Cascade para identificar objetos en tiempo real.
 
-El programa abre una cámara o archivo de video, convierte cada frame a escala de grises, aplica un clasificador **Haar Cascade** y dibuja un rectángulo sobre las detecciones encontradas.
-
+Este repositorio forma parte de mi portafolio de trabajo y muestra el uso básico de detección de objetos mediante archivos XML preentrenados.
 
 ---
 
 ## Objetivo del proyecto
 
-Mostrar de forma sencilla cómo una aplicación en Python puede:
+Aplicar conceptos introductorios de visión por computadora mediante un programa capaz de:
 
-- Capturar video desde una cámara;
-- Procesar imágenes frame por frame;
-- Usar un clasificador XML preentrenado;
-- Detectar objetos con `detectMultiScale`;
-- Dibujar resultados en pantalla;
-- Modificar parámetros para observar cambios en la detección.
+* Capturar video desde una cámara web.
+* Procesar imágenes frame por frame.
+* Convertir imágenes a escala de grises.
+* Cargar clasificadores Haar Cascade en formato XML.
+* Detectar objetos con `detectMultiScale`.
+* Dibujar rectángulos y etiquetas sobre las detecciones encontradas.
 
 ---
 
 ## Tecnologías utilizadas
 
-- Python 3
-- OpenCV
-- Haar Cascade Classifier
-- Cámara web o archivo de video
+* Python 3
+* OpenCV
+* Haar Cascade Classifier
+* Cámara web
 
 ---
 
 ## Estructura del repositorio
 
 ```text
-python-llanta/
+Python-Llanta/
 ├── cascades/
-│   └── cars.xml
-├── docs/
-│   └── guia_didactica.md
-├── examples/
-│   └── README.md
-├── outputs/
+│   ├── cars.xml
+│   └── cars_2.xml
 ├── src/
 │   └── detector.py
-├── .gitignore
-├── README.md
-└── requirements.txt
+├── haarcascade_car.xml
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
 ## Instalación
 
-Clona el repositorio y entra a la carpeta del proyecto:
+Clona el repositorio:
 
 ```bash
 git clone https://github.com/SofiPv/Python-Llanta.git
+```
+
+Entra a la carpeta del proyecto:
+
+```bash
 cd Python-Llanta
 ```
 
@@ -64,7 +65,7 @@ Crea un entorno virtual:
 python -m venv .venv
 ```
 
-Actívalo en Windows:
+Activa el entorno virtual en Windows:
 
 ```bash
 .venv\Scripts\activate
@@ -78,55 +79,43 @@ pip install -r requirements.txt
 
 ---
 
-## Ejecución básica
+## Ejecución
 
-Para abrir la cámara principal:
+Ejecuta el programa principal:
 
 ```bash
 python src/detector.py
 ```
 
-Si tu computadora detecta otra cámara, puedes probar:
+Al iniciar, se abrirá una ventana con la imagen capturada por la cámara.
+Cuando el programa detecte un objeto, mostrará un rectángulo sobre la zona identificada y una etiqueta visual.
 
-```bash
-python src/detector.py --source 1
-```
+Para cerrar la ventana, presiona la tecla:
 
-También puedes usar un archivo de video:
-
-```bash
-python src/detector.py --source video.mp4
+```text
+Esc
 ```
 
 ---
 
-## Controles
+## Funcionamiento general
 
-| Tecla | Acción |
-|---|---|
-| `q` | Cerrar el programa |
-| `Esc` | Cerrar el programa |
-| `p` | Pausar o reanudar el video |
-| `s` | Guardar una captura en `outputs/` |
+El programa realiza el siguiente flujo:
+
+1. Abre la cámara web.
+2. Captura cada frame del video.
+3. Convierte la imagen a escala de grises.
+4. Carga clasificadores Haar Cascade desde archivos XML.
+5. Aplica detección de objetos con OpenCV.
+6. Dibuja rectángulos sobre las detecciones.
+7. Muestra el resultado en tiempo real.
 
 ---
 
-## Parámetros didácticos
+## Alcance del proyecto
 
-Puedes modificar la sensibilidad de la detección desde la terminal:
+Este proyecto está orientado al aprendizaje y demostración de conceptos básicos de visión por computadora.
+La detección puede variar según la iluminación, la calidad de la cámara, el ángulo del objeto y el clasificador utilizado.
 
-```bash
-python src/detector.py --scale-factor 1.2 --min-neighbors 6
-```
+No corresponde a un sistema industrial ni de seguridad; su propósito es académico, didáctico y de portafolio.
 
-También puedes cambiar la etiqueta mostrada:
-
-```bash
-python src/detector.py --label "Llanta"
-```
-
-## Limitaciones
-
-Este proyecto usa un clasificador Haar Cascade clásico, por lo que puede presentar falsos positivos o no detectar objetos en condiciones de poca luz, ángulos difíciles o cámaras con baja calidad.
-
-No está pensado como sistema de seguridad ni como detector industrial, sino como práctica académica y demostración introductoria.
